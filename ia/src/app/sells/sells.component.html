@@ -1,0 +1,61 @@
+<div class="sells-container">
+  <div class="container">
+    <h1>Módulo de Ventas y Análisis</h1>
+    <div class="container-graphics">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nit</th>
+              <th>Descripción del producto</th>
+              <th>Vendidas</th>
+              <th>Ganancia*Unidad</th>
+              <th>Fecha</th>
+              <th>Proveedor</th>
+              <th>
+                <input
+                  type="text"
+                  placeholder="Buscar"
+                  [(ngModel)]="searchTerm"
+                  (input)="searchProducts()"
+                  name="buscar"
+                />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let in of filteredInventory">
+              <td>{{ in.nit }}</td>
+              <td>{{ in.descripcion }}</td>
+              <td>{{ in.vendidas }}</td>
+              <td>{{ in.ganancia_unidad }}</td>
+              <td>{{ in.fecha | date }}</td>
+              <td>{{ in.proveedor }}</td>
+              <td><a href="">Preguntar</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="graphics">
+        <div class="graphic"></div>
+        <div class="gains-graph">
+          <canvas id="gainsChart"></canvas>
+        </div>
+        <h2>Productos Mas Vendidos</h2>
+        <div class="top">
+          <div>
+            <div *ngFor="let t of top" class="card">
+              <span class="label">Producto</span>
+              <span class="label">Cantidad</span>
+              <span class="product">{{ t.producto }}</span>
+              <span class="cant">{{ t.cantidad }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div (click)="downloadPDF()" class="btn-container">
+    <button>Descargar pdf</button>
+  </div>
+</div>

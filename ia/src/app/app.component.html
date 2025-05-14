@@ -1,0 +1,55 @@
+<div class="main-container">
+  <div class="selected">
+    <div *ngIf="currentOption == 'chat'" class="chat-ia option">
+      <div class="tittle-intro">
+        <div class="tittle">
+          <img src="assets/app/time.png" width="70px" height="90px" alt="" />
+          <h1>Hola Soy Nexo</h1>
+        </div>
+        <p>¿En que te puedo ayudar hoy ?</p>
+      </div>
+      <app-search />
+    </div>
+    <div *ngIf="currentOption == 'factu'" class="factu option">
+      <app-factura />
+    </div>
+    <div *ngIf="currentOption == 'graphics'" class="graphics option">
+      <app-gains />
+    </div>
+    <div *ngIf="currentOption == 'sells'" class="sells option">
+      <app-sells />
+    </div>
+    <div *ngIf="currentOption == 'inventory'" class="inventory option">
+      <app-inventory />
+    </div>
+  </div>
+  <div class="options">
+    <button *ngIf="currentOption != 'chat'" (click)="changeOption('chat')">
+      <img src="assets/app/chat.png" />
+	<p><b>Chat</b></p>
+    </button>
+    <button *ngIf="currentOption != 'factu'" (click)="changeOption('factu')">
+      <img src="assets/app/factur.png" />
+	<p><b>Facturas</b></p>
+    </button>
+    <button
+      *ngIf="currentOption != 'graphics'"
+      (click)="changeOption('graphics')"
+    >
+      <img src="assets/app/graphic.png" />
+<p><b>Ganancias</b></p>
+
+    </button>
+    <button *ngIf="currentOption != 'sells'" (click)="changeOption('sells')">
+      <img src="assets/app/gains.png" />
+	<p><b>Ventas</b></p>
+    </button>
+    <button
+      *ngIf="currentOption != 'inventory'"
+      (click)="changeOption('inventory')"
+    >
+      <img src="assets/app/inventory.png" />
+<p><b>Inventario</b></p>
+    </button>
+  </div>
+</div>

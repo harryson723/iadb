@@ -1,0 +1,37 @@
+<div class="gains-container">
+  <h1>Módulo De Comparación De Gastos Y Ganancias</h1>
+
+  <div class="gains-content">
+    <div class="gains-summary">
+      <div class="card ingreso-semana">
+        <h3>Ingreso Totales Esta Semana</h3>
+        <p>{{ ingresoSemana | currency:'COP' }}</p>
+      </div>
+      <div class="card ingreso-mes">
+        <h3>Ingresos Totales Este Mes</h3>
+        <p>{{ ingresoMes | currency:'COP' }}</p>
+      </div>
+      <div class="card gasto-semana">
+        <h3>Gastos Totales Esta Semana</h3>
+        <p>{{ gastoSemana | currency:'COP' }}</p>
+      </div>
+      <div class="card gasto-mes">
+        <h3>Gastos Totales Este Mes</h3>
+        <p>{{ gastoMes | currency:'COP' }}</p>
+      </div>
+      <div class="card ganancia-mes">
+        <h3>Ganancias Totales De Este Mes</h3>
+        <p>{{ gananciaMes | currency:'COP' }}</p>
+      </div>      
+    </div>
+
+    <div class="gains-graph">
+      <!-- Aquí irá la gráfica -->
+      <canvas id="gainsChart"></canvas>
+    </div>
+  </div>
+
+  <div (click)="downloadPDF()" class="btn-container">
+    <button >Descargar pdf</button>
+  </div>
+</div>

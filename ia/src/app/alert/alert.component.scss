@@ -1,0 +1,19 @@
+.alert-container {
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.error {
+    background-color: red;
+}
+
+.success {
+    background-color: green;
+}
+
+.warning {
+    background-color: yellow;
+}

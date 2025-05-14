@@ -1,0 +1,69 @@
+<div class="inventory-container">
+  <div class="container">
+    <h1>Módulo de Gestión de Inventarios</h1>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nit</th>
+            <th>Descripción del producto</th>
+            <th>En Stock</th>
+            <th>Costo*Unidad</th>
+            <th>Fecha</th>
+            <th>Proveedor</th>
+            <th>
+              <input
+                type="text"
+                placeholder="Buscar"
+                [(ngModel)]="searchTerm"
+                (input)="searchProducts()"
+                name="buscar"
+              />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let in of filteredInventory">
+            <td>{{ in.nit }}</td>
+            <td>{{ in.descripcion }}</td>
+            <td>{{ in.cantidad_stock }}</td>
+            <td>{{ in.costo_unidad }}</td>
+            <td>{{ in.fecha | date }}</td>
+            <td>{{ in.proveedor }}</td>
+            <td><a href="">Preguntar</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="btn-container" (click)="addProduct()">
+    <button>Agregar entrada</button>
+  </div>
+</div>
+<app-modal [visible]="modal" title="Subir articulo" (closed)="modal = false">
+  <form action="">
+    <div class="inputs">
+      <label for="">NIT:</label>
+      <input type="text" [(ngModel)]="nit" name="nit" />
+    </div>
+    <div class="inputs">
+      <label for="">Descripción del producto:</label>
+      <input type="text" [(ngModel)]="descripcion" name="descripcion" />
+    </div>
+    <div class="inputs">
+      <label for="">Cantidad de Stock:</label>
+      <input type="text" [(ngModel)]="stock" name="stock" />
+    </div>
+    <div class="inputs">
+      <label for="">Costo de Unidad:</label>
+      <input type="text" [(ngModel)]="valor" name="valor" />
+    </div>
+    <div class="inputs">
+      <label for="">Proveedor:</label>
+      <input type="text" [(ngModel)]="provider" name="provider" />
+    </div>
+    <div class="btn-container" (click)="sendProduct($event)">
+      <button type="submit">Enviar</button>
+    </div>
+  </form>
+</app-modal>

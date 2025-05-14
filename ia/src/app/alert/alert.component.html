@@ -1,0 +1,11 @@
+<div
+  [ngClass]="{
+    error: data?.type === 'error',
+    success: data?.type === 'success',
+    warning: data?.type === 'warning'
+  }"
+  class="alert-container"
+>
+  <span>{{ data?.message }}</span>
+  <div></div>
+</div>

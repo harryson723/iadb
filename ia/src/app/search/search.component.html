@@ -1,0 +1,21 @@
+<div class="search-container">
+  <div class="search-chat-container">
+    <div class="chat-container">
+      <div
+        *ngFor="let chat of chats"
+        [ngClass]="chat.type == 'ia' ? 'chat-ia' : 'chat-user'"
+      >
+        <p  [innerHTML]="chat.text"></p>
+      </div>
+    </div>
+
+    <div class="search-form-container">
+      <form class="search-form" action="">
+        <input type="text" [formControl]="question" placeholder="Comenzar a hablar con nexo"/>
+        <button type="submit" (click)="sendQuestion($event)">
+          <img src="assets/app/arrow.png" width="30px" height="30px" alt="" />
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

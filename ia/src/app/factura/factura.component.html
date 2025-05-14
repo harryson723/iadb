@@ -1,0 +1,99 @@
+<div class="factu-container">
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nit</th>
+          <th>Descripción del producto</th>
+          <th>Valor</th>
+          <th>Fecha</th>
+          <th>Tipo de factura</th>
+          <th>Buscar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let factura of imgs">
+          <td>{{ factura.nit }}</td>
+          <td>{{ factura.descripcion }}</td>
+          <td>{{ factura.valor }}</td>
+          <td>{{ factura.date }}</td>
+          <td>{{ factura.isSell }}</td>
+          <td>
+            <a [href]="factura.data" [download]="factura.name"> Ver archivo </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="btn-container" (click)="uploadFactur()">
+    <button>Subir factura</button>
+  </div>
+  <!--   
+    
+    <div>
+      <h2>Facturas</h2>
+      <ng-container *ngIf="imgs.length > 0; else elseTemplate">
+        <div class="preview-container">
+          <div *ngFor="let file of imgs" class="preview-box">
+            <ng-container
+              *ngIf="file.type.startsWith('image'); else pdfTemplate"
+            >
+              <img [src]="file.data" [alt]="file.name" width="150" />
+              <p>
+                <strong>{{ file.name }}</strong>
+              </p>
+              <p>{{ file.date }}</p>
+              <a [href]="file.data" [download]="file.name">
+                Descargar imagen
+              </a>
+            </ng-container>
+
+            <ng-template #pdfTemplate>
+              <div class="pdf-box">
+                <p>
+                  📄 <strong>{{ file.name }}</strong>
+                </p>
+                <p>{{ file.date }}</p>
+                <a [href]="file.data" [download]="file.name">
+                  Descargar PDF
+                </a>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #elseTemplate>
+        <p>Sin facturas</p>
+      </ng-template>
+    </div>
+--></div>
+<app-modal [visible]="modal" title="Subir factura" (closed)="modal = false">
+  <form action="">
+    <div class="inputs">
+      <label for="">NIT:</label>
+      <input type="text" [(ngModel)]="nit" name="nit" />
+    </div>
+    <div class="inputs">
+      <label for="">Descripción del producto:</label>
+      <input type="text" [(ngModel)]="descripcion" name="descripcion" />
+    </div>
+    <div class="inputs">
+      <label for="">Valor total:</label>
+      <input type="text" [(ngModel)]="valor" name="valor" />
+    </div>
+    <div class="inputs">
+      <label for="">Tipo de factura:</label>
+      <input type="text" [(ngModel)]="isSell" name="isSell" />
+    </div>
+    <span
+      >Debe subir una fotografía de la factura presionando el botón subir</span
+    >
+    <input type="file" (change)="onFileSelected($event)" />
+    <!--
+    <div class="btn-container" (click)="uploadFactur()">
+      <button type="button">Subir</button>
+    </div>
+    -->
+  </form>
+</app-modal>
