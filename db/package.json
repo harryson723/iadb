@@ -10,11 +10,12 @@
     "testEnvironment": "node"
   },
   "scripts": {
-  "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles --runInBand"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles --runInBand"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "k6": "^0.0.0",
     "openai": "^4.88.0"
   },
   "devDependencies": {

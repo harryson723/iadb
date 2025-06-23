@@ -1,11 +1,29 @@
 <div
   [ngClass]="{
-    error: data?.type === 'error',
-    success: data?.type === 'success',
-    warning: data?.type === 'warning'
+    error: data.type === 'error',
+    success: data.type === 'success',
+    warning: data.type === 'warning'
   }"
   class="alert-container"
 >
-  <span>{{ data?.message }}</span>
-  <div></div>
+  <img
+    *ngIf="data.type === 'error'"
+    width="20px"
+    src="assets/app/Icono-rojo.svg"
+  />
+  <img
+    *ngIf="data.type === 'warning'"
+    width="20px"
+    src="assets/app/Icono-amarrilo.svg"
+  />
+  <img
+    *ngIf="data.type === 'success'"
+    width="20px"
+    src="assets/app/Icono-verde.svg"
+  />
+  <div class="message">
+    <b>{{ data.title }}</b>
+    <p>{{ data.message }}</p>
+  </div>
+  <button (click)="closeDialog()" class="close"><img width="20px" src="assets/app/Close.svg" /></button>
 </div>

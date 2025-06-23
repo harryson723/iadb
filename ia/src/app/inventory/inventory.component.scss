@@ -27,6 +27,7 @@ form {
       border: none;
       border-radius: 15px;
       height: 45px;
+      padding-left: 10px;
     }
   }
 
@@ -84,4 +85,8 @@ form {
 a {
   color: white;
   font-weight: 500;
+}
+
+.stock_edit {
+  max-width: 60px;
 }

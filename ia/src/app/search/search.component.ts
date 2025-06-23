@@ -34,17 +34,29 @@ export class SearchComponent {
 
   sendQuestion(event: any) {
     event.preventDefault();
+
     if (this.question.invalid) {
       this.openAlert();
       return;
     }
+
     const text = this.question.value || '';
     this.chats.push({
       type: 'user',
       text,
     });
+
     this.question.setValue('');
     this.question.disable();
+
+    // 🟡 Agregar mensaje temporal de carga
+    const loadingMessage = {
+      type: 'ia',
+      text: 'Cargando...',
+    };
+    this.chats.push(loadingMessage);
+    const loadingIndex = this.chats.length - 1;
+
     this.http
       .post('http://localhost:4000/query', {
         query: text,
@@ -53,17 +65,13 @@ export class SearchComponent {
       .subscribe({
         next: (res: any) => {
           this.question.enable();
-          this.chats.push({
-            type: 'ia',
-            text: res.data,
-          });
+          // ✅ Reemplaza el texto del mensaje temporal
+          this.chats[loadingIndex].text = res.data;
         },
         error: (err) => {
           this.question.enable();
-          this.chats.push({
-            type: 'ia',
-            text: 'Error al procesar',
-          });
+          // ❌ Mensaje de error en el mismo lugar
+          this.chats[loadingIndex].text = 'Error al procesar';
         },
         complete: () => this.question.enable(),
       });

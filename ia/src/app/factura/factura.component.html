@@ -3,21 +3,25 @@
     <table>
       <thead>
         <tr>
+          <th>Número de factura</th>
           <th>Nit</th>
           <th>Descripción del producto</th>
           <th>Valor</th>
           <th>Fecha</th>
           <th>Tipo de factura</th>
+          <th>Forma de pago</th>
           <th>Buscar</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let factura of imgs">
+          <td>{{ factura.consecutivo }}</td>
           <td>{{ factura.nit }}</td>
           <td>{{ factura.descripcion }}</td>
           <td>{{ factura.valor }}</td>
           <td>{{ factura.date }}</td>
           <td>{{ factura.isSell }}</td>
+          <td>{{ factura.formaPago }}</td>
           <td>
             <a [href]="factura.data" [download]="factura.name"> Ver archivo </a>
           </td>
@@ -71,20 +75,36 @@
 <app-modal [visible]="modal" title="Subir factura" (closed)="modal = false">
   <form action="">
     <div class="inputs">
-      <label for="">NIT:</label>
-      <input type="text" [(ngModel)]="nit" name="nit" />
+      <label for="">NIT o Cédula:</label>
+      <input type="text" [(ngModel)]="nit" name="nit" placeholder="Ejemplo: 18888888-9"  />
     </div>
     <div class="inputs">
       <label for="">Descripción del producto:</label>
-      <input type="text" [(ngModel)]="descripcion" name="descripcion" />
+      <input type="text" [(ngModel)]="descripcion" name="descripcion" placeholder="Describa el producto" />
     </div>
     <div class="inputs">
       <label for="">Valor total:</label>
-      <input type="text" [(ngModel)]="valor" name="valor" />
+      <input type="number" [(ngModel)]="valor" name="valor" placeholder="Ingrese el valor de la factura" />
     </div>
     <div class="inputs">
-      <label for="">Tipo de factura:</label>
-      <input type="text" [(ngModel)]="isSell" name="isSell" />
+      <label for="tipoFactura">Tipo de factura:</label>
+      <select [(ngModel)]="isSell" name="isSell" id="tipoFactura">
+        <option [ngValue]="null" disabled selected>Seleccione un tipo de factura</option>
+        <option [ngValue]="'venta'">Venta</option>
+        <option [ngValue]="'compra'">Compra</option>
+      </select>
+    </div>    
+    <div class="inputs">
+      <label for="formaPago">Forma de pago:</label>
+      <select [(ngModel)]="formaPago" name="formaPago" id="formaPago">
+        <option [ngValue]="null" disabled selected>Seleccione una forma de pago</option>
+        <option [ngValue]="'efectivo'">Efectivo</option>
+        <option [ngValue]="'cheques'">Cheques</option>
+        <option [ngValue]="'tarjeta'">Tarjeta</option>
+        <option [ngValue]="'transferencia'">Transferencia</option>
+        <option [ngValue]="'billetera_electrica'">Billetera eléctrica</option>
+        <option [ngValue]="'plataforma_pago_en_linea'">Plataforma de pago en línea</option>
+      </select>
     </div>
     <span
       >Debe subir una fotografía de la factura presionando el botón subir</span

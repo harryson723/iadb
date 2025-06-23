@@ -9,6 +9,7 @@
             <th>Descripción del producto</th>
             <th>En Stock</th>
             <th>Costo*Unidad</th>
+            <th>Ganancia*Unidad</th>
             <th>Fecha</th>
             <th>Proveedor</th>
             <th>
@@ -26,8 +27,17 @@
           <tr *ngFor="let in of filteredInventory">
             <td>{{ in.nit }}</td>
             <td>{{ in.descripcion }}</td>
-            <td>{{ in.cantidad_stock }}</td>
+            <td>
+              <input
+              class="stock_edit"
+                type="number"
+                [(ngModel)]="in.cantidad_stock"
+                (blur)="updateStock(in)"
+                min="0"
+              />
+            </td>
             <td>{{ in.costo_unidad }}</td>
+            <td>{{ in.ganancia_unidad }}</td>
             <td>{{ in.fecha | date }}</td>
             <td>{{ in.proveedor }}</td>
             <td><a href="">Preguntar</a></td>
@@ -44,23 +54,27 @@
   <form action="">
     <div class="inputs">
       <label for="">NIT:</label>
-      <input type="text" [(ngModel)]="nit" name="nit" />
+      <input type="text" [(ngModel)]="nit" name="nit"  placeholder="Ejemplo: 18888888-9" />
     </div>
     <div class="inputs">
       <label for="">Descripción del producto:</label>
-      <input type="text" [(ngModel)]="descripcion" name="descripcion" />
+      <input type="text" [(ngModel)]="descripcion" name="descripcion" placeholder="Describa el producto" />
     </div>
     <div class="inputs">
       <label for="">Cantidad de Stock:</label>
-      <input type="text" [(ngModel)]="stock" name="stock" />
+      <input type="text" [(ngModel)]="stock" name="stock"  placeholder="¿Cuantos productos hay?"/>
     </div>
     <div class="inputs">
       <label for="">Costo de Unidad:</label>
-      <input type="text" [(ngModel)]="valor" name="valor" />
+      <input type="text" [(ngModel)]="valor" name="valor" placeholder="Valor del producto" />
+    </div>
+    <div class="inputs">
+      <label for="">Ganancia por Unidad:</label>
+      <input type="text" [(ngModel)]="gain" name="gain" placeholder="Ganancia del producto"/>
     </div>
     <div class="inputs">
       <label for="">Proveedor:</label>
-      <input type="text" [(ngModel)]="provider" name="provider" />
+      <input type="text" [(ngModel)]="provider" name="provider" placeholder="Proveedor del prodcuto" />
     </div>
     <div class="btn-container" (click)="sendProduct($event)">
       <button type="submit">Enviar</button>

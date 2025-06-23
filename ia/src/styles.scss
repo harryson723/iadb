@@ -118,3 +118,28 @@ tbody {
   }
 }
 
+.cdk-overlay-backdrop {
+  display: none ; /* Asegúrate de que el fondo esté posicionado fijamente */
+}
+
+/* Estilo para el cdk-overlay-container */
+.cdk-overlay-container {
+  position: fixed !important;
+  bottom: -10% !important;    /* Alineación con el fondo */
+  left: 10px !important;      /* Alineación con el fondo */
+  width: 400px !important;    /* Ancho fijo */
+  z-index: 1000;              /* Asegúrate de que el contenedor esté encima */
+}
+
+/* Estilo para el cdk-overlay-pane, que es el contenedor real del contenido */
+.cdk-overlay-pane {
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+  width: 100% !important;     /* Asegúrate de que el contenido ocupe el 100% del contenedor */
+  height: auto !important;    /* Ajuste automático según el contenido */
+}
+
+.mat-mdc-dialog-surface {
+  border-radius: 5px !important;
+}
